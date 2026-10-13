@@ -87,12 +87,13 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
         </div>
 
         <div class="social-links">
-          <a href="https://www.instagram.com/agencia-fontes" target="_blank" rel="noopener noreferrer" title="Instagram">
+          <a href="https://www.instagram.com/agencia-fontes" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2" />
               <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" fill="none" stroke="currentColor" stroke-width="2" />
               <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
             </svg>
+            <span>@agencia.fontes</span>
           </a>
         </div>
       </div>
@@ -292,21 +293,28 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
   }
 
   .social-links a {
-    width: 40px;
-    height: 40px;
     background-color: var(--color-bg-dark);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     color: var(--color-mint);
     transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .social-links a svg {
+    flex-shrink: 0;
   }
 
   .social-links a:hover {
     border-color: var(--color-mint);
     background-color: var(--color-bg-medium);
+    transform: translateY(-2px);
   }
 
   /* Responsive */
