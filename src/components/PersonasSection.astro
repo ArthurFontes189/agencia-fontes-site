@@ -34,8 +34,12 @@ const getIcon = (iconName: string) => {
           class={`tab-button ${index === 0 ? 'active' : ''}`}
           data-tab={index}
           aria-selected={index === 0}
+          title={persona.title}
         >
-          {persona.title}
+          <div class="tab-icon">
+            <div set:html={getIcon(persona.icon)} />
+          </div>
+          <span class="tab-number">{String(index + 1).padStart(2, '0')}</span>
         </button>
       ))}
     </div>
@@ -92,39 +96,62 @@ const getIcon = (iconName: string) => {
   }
 
   .tab-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
     padding: var(--spacing-md) var(--spacing-lg);
     background: none;
     border: none;
     color: var(--color-text-secondary);
-    font-size: clamp(0.95rem, 2vw, 1rem);
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
   }
 
+  .tab-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all 0.3s ease;
+  }
+
+  .tab-number {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
   .tab-button::after {
     content: '';
     position: absolute;
     bottom: -var(--spacing-2xl);
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 30px;
     height: 2px;
     background-color: var(--color-mint);
-    transform: scaleX(0);
     transition: transform 0.3s ease;
   }
 
-  .tab-button:hover {
+  .tab-button:hover .tab-icon {
     color: var(--color-text);
   }
 
-  .tab-button.active {
+  .tab-button.active .tab-icon {
+    color: var(--color-mint);
+  }
+
+  .tab-button.active .tab-number {
     color: var(--color-mint);
   }
 
   .tab-button.active::after {
-    transform: scaleX(1);
+    transform: translateX(-50%) scaleX(1);
   }
 
   /* Personas Content */

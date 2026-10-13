@@ -21,7 +21,7 @@ export const differentials = [
   {
     id: 2,
     title: 'Suporte dedicado',
-    description: 'Arthur e Celso cuidam pessoalmente. Não é fila de ticket. É WhatsApp direto.',
+    description: 'Nosso time cuida pessoalmente. Não é fila de ticket. É resposta direta e rápida.',
     icon: 'headset',
   },
   {
@@ -58,7 +58,7 @@ export const servicesCreate = [
     id: 4,
     title: 'Foto do Negócio',
     description: 'Tiramos fotos profissionais do seu espaço, produtos, equipe. Pronto para postar.',
-    span: 2,
+    span: 1,
     icon: 'camera',
   },
 ];
@@ -75,7 +75,7 @@ export const servicesMaintain = [
     id: 2,
     title: 'Anúncios Pagos',
     description: 'Google e Facebook. Criamos, testamos, otimizamos. Você vê resultados.',
-    span: 2,
+    span: 1,
     icon: 'trending-up',
   },
   {
@@ -147,32 +147,42 @@ export const howItWorks = [
 
 export const comparison = [
   {
-    feature: 'Site responsivo',
-    generic: true,
-    agencia: true,
-  },
-  {
-    feature: 'Design original',
+    feature: 'Design com sua identidade (não template)',
     generic: false,
     agencia: true,
   },
   {
-    feature: 'Otimizado para conversão',
+    feature: 'Liberdade criativa total',
     generic: false,
     agencia: true,
   },
   {
-    feature: 'Domínio e hospedagem',
+    feature: 'Otimizado para SEO e conversão',
     generic: false,
     agencia: true,
   },
   {
-    feature: 'Suporte dedicado',
+    feature: 'Sem taxas mensais recorrentes',
     generic: false,
     agencia: true,
   },
   {
-    feature: 'Sistema de agendamento',
+    feature: 'Você é dono de tudo (domínio, código, dados)',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Suporte técnico dedicado',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Migrável para qualquer plataforma',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Sistema de agendamento customizado',
     generic: false,
     agencia: true,
   },

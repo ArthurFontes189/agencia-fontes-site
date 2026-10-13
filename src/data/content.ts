@@ -6,7 +6,7 @@
 
 export const site = {
   name: 'Agência Fontes',
-  description: 'Mini agência para pequenos empreendedores',
+  description: 'Agência de websites para pequenos e médios empreendedores',
   baseUrl: 'https://agenciafontes.com.br', // TODO: update
   lang: 'pt-BR',
 };
@@ -18,17 +18,6 @@ export const agency = {
   email: 'agenciafontes@gmail.com',
   instagram: '@agencia-fontes',
   cnpj: '[PREENCHER]',
-};
-
-export const cousins = {
-  dev: {
-    name: 'Arthur',
-    role: 'Desenvolvimento & Sistemas',
-  },
-  marketing: {
-    name: 'Celso',
-    role: 'Marketing & Vendas',
-  },
 };
 
 export const plans = {

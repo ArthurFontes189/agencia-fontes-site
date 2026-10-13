@@ -24,12 +24,14 @@ const faqsByCategory = Object.keys(categories).reduce(
 
     {/* FAQ Categories Tabs */}
     <div class="faq-tabs">
-      {Object.keys(categories).map((category) => (
+      {Object.keys(categories).map((category, index) => (
         <button
           class={`faq-tab-button ${category === 'gerais' ? 'active' : ''}`}
           data-category={category}
+          title={categories[category as keyof typeof categories]}
         >
-          {categories[category as keyof typeof categories]}
+          <span class="tab-label">{String(index + 1).padStart(2, '0')}</span>
+          <span class="tab-text" style="font-size: 0.7rem; opacity: 0.7;">{categories[category as keyof typeof categories]}</span>
         </button>
       ))}
     </div>
@@ -144,26 +146,42 @@ const faqsByCategory = Object.keys(categories).reduce(
   }
 
   .faq-tab-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
     padding: var(--spacing-md) var(--spacing-lg);
     background: none;
     border: none;
     color: var(--color-text-secondary);
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
   }
 
+  .tab-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: inherit;
+  }
+
+  .tab-text {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
   .faq-tab-button::after {
     content: '';
     position: absolute;
     bottom: -var(--spacing-2xl);
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 30px;
     height: 2px;
     background-color: var(--color-mint);
-    transform: scaleX(0);
     transition: transform 0.3s ease;
   }
 
@@ -171,12 +189,20 @@ const faqsByCategory = Object.keys(categories).reduce(
     color: var(--color-text);
   }
 
+  .faq-tab-button:hover .tab-text {
+    opacity: 1;
+  }
+
   .faq-tab-button.active {
     color: var(--color-mint);
   }
 
+  .faq-tab-button.active .tab-text {
+    opacity: 1;
+  }
+
   .faq-tab-button.active::after {
-    transform: scaleX(1);
+    transform: translateX(-50%) scaleX(1);
   }
 
   /* FAQ Content */
