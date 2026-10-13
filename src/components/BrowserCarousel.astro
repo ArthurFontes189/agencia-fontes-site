@@ -15,57 +15,102 @@
     <div class="carousel">
       <!-- Slide 1: Desktop Portfolio Grid -->
       <div class="carousel-slide active" data-slide="0">
-        <div class="slide-label">📱 Desktop - Portfolio (3 Colunas)</div>
+        <div class="slide-label">🖥️ Desktop - Portfolio em Destaque (3 Projetos)</div>
         <div class="portfolio-grid desktop">
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 1</div>
+            <div class="portfolio-image">
+              <div class="project-icon">💼</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">TechStart</div>
+              <div class="portfolio-tag">Startup</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 2</div>
+            <div class="portfolio-image">
+              <div class="project-icon">🏪</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">Fashion House</div>
+              <div class="portfolio-tag">E-commerce</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 3</div>
+            <div class="portfolio-image">
+              <div class="project-icon">🍽️</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">Sabor Autêntico</div>
+              <div class="portfolio-tag">Restaurante</div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Slide 2: Tablet Portfolio Grid -->
       <div class="carousel-slide" data-slide="1">
-        <div class="slide-label">📱 Tablet - Portfolio (2 Colunas)</div>
+        <div class="slide-label">📱 Tablet - Visualização Adaptada (2 Projetos)</div>
         <div class="portfolio-grid tablet">
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 1</div>
+            <div class="portfolio-image">
+              <div class="project-icon">💰</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">FinPro Consultoria</div>
+              <div class="portfolio-tag">Serviços</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 2</div>
+            <div class="portfolio-image">
+              <div class="project-icon">💪</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">Fitness Elite</div>
+              <div class="portfolio-tag">Academia</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 3</div>
+            <div class="portfolio-image">
+              <div class="project-icon">🎨</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">Design Studio Co</div>
+              <div class="portfolio-tag">Agência</div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Slide 3: Mobile Portfolio Stack -->
       <div class="carousel-slide" data-slide="2">
-        <div class="slide-label">📱 Mobile - Portfolio (1 Coluna)</div>
+        <div class="slide-label">📱 Mobile - Layout Responsivo (1 Coluna)</div>
         <div class="portfolio-grid mobile">
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 1</div>
+            <div class="portfolio-image">
+              <div class="project-icon">👗</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">Beauty Trends</div>
+              <div class="portfolio-tag">Beleza</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 2</div>
+            <div class="portfolio-image">
+              <div class="project-icon">📚</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">EduPlus Academy</div>
+              <div class="portfolio-tag">Educação</div>
+            </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-image"></div>
-            <div class="portfolio-text">Projeto 3</div>
+            <div class="portfolio-image">
+              <div class="project-icon">🏥</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-text">MediCare Clínica</div>
+              <div class="portfolio-tag">Saúde</div>
+            </div>
           </div>
         </div>
       </div>
@@ -204,11 +249,35 @@
   .portfolio-image {
     width: 100%;
     aspect-ratio: 1;
-    background: linear-gradient(135deg, rgba(24, 93, 241, 0.2) 0%, rgba(16, 71, 201, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(24, 93, 241, 0.25) 0%, rgba(16, 71, 201, 0.15) 100%);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-item:hover .portfolio-image {
+    border-color: var(--color-mint);
+    background: linear-gradient(135deg, rgba(24, 93, 241, 0.35) 0%, rgba(16, 71, 201, 0.25) 100%);
+  }
+
+  .project-icon {
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
 
   .portfolio-image::after {
@@ -219,6 +288,7 @@
       linear-gradient(45deg, transparent 30%, rgba(24, 93, 241, 0.1) 50%, transparent 70%),
       linear-gradient(-45deg, transparent 30%, rgba(24, 93, 241, 0.1) 50%, transparent 70%);
     animation: shimmer 2s infinite;
+    pointer-events: none;
   }
 
   @keyframes shimmer {
@@ -230,10 +300,30 @@
     }
   }
 
+  .portfolio-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: center;
+    width: 100%;
+  }
+
   .portfolio-text {
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .portfolio-tag {
+    font-size: 0.7rem;
+    color: var(--color-mint);
+    background-color: rgba(24, 93, 241, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   /* Carousel Controls */
