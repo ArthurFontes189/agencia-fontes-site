@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Marquee from '../components/Marquee.astro';
+import BrowserCarousel from '../components/BrowserCarousel.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import HowItWorksSection from '../components/HowItWorksSection.astro';
 import PricingSection from '../components/PricingSection.astro';
@@ -52,20 +53,7 @@ const description = agency.slogan;
         </div>
 
         <div class="hero-visual">
-          <!-- SVG Mockup de browser -->
-          <div class="browser-mockup">
-            <div class="browser-header">
-              <div class="browser-dots">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="browser-url">agencia-fontes.com.br</div>
-            </div>
-            <div class="browser-content">
-              <div class="hero-gradient"></div>
-            </div>
-          </div>
+          <BrowserCarousel />
         </div>
       </div>
     </section>
@@ -261,65 +249,6 @@ const description = agency.slogan;
       opacity: 1;
       transform: translateX(0);
     }
-  }
-
-  .browser-mockup {
-    border: 1px solid var(--border-medium);
-    border-radius: var(--radius-lg);
-    background-color: var(--color-bg-medium);
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  }
-
-  .browser-header {
-    background-color: var(--color-bg-dark);
-    padding: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .browser-dots {
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-
-  .browser-dots div {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--border-medium);
-  }
-
-  .browser-dots div:nth-child(1) {
-    background-color: var(--color-error);
-  }
-
-  .browser-dots div:nth-child(2) {
-    background-color: var(--color-warning);
-  }
-
-  .browser-dots div:nth-child(3) {
-    background-color: var(--color-success);
-  }
-
-  .browser-url {
-    color: var(--color-text-tertiary);
-    font-size: 0.875rem;
-    font-family: var(--font-mono);
-  }
-
-  .browser-content {
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--color-mint-dark) 0%, var(--color-mint-darkest) 100%);
   }
 
   /* RESPONSIVE */
