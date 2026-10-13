@@ -23,12 +23,22 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug - Check files
+        run: |
+          echo "=== Files in dist ==="
+          ls -la dist/
+          echo "=== Index.html exists? ==="
+          test -f dist/index.html && echo "✓ index.html found" || echo "✗ index.html NOT found"
+
       - name: Deploy
         run: |
-          cd dist
+          mkdir -p deploy
+          cp -r dist/* deploy/
+          cd deploy
+          ls -la
           git init
           git config user.name "Deploy Bot"
           git config user.email "deploy@github.com"
           git add -A
-          git commit -m "Deploy: $(date)"
+          git commit -m "Deploy from main"
           git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:gh-pages
