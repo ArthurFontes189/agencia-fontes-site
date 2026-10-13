@@ -228,3 +228,93 @@ export const plans = [
     highlighted: false,
   },
 ];
+
+export const team = [
+  {
+    id: 1,
+    name: 'Arthur Fontes',
+    role: 'Desenvolvimento & Sistemas',
+    description: 'Desenvolvedor full-stack. Cria sites rápidos, seguros e que convertem. Especialista em sistemas personalizados.',
+    image: '/team-arthur.jpg',
+  },
+  {
+    id: 2,
+    name: 'Celso',
+    role: 'Marketing & Vendas',
+    description: 'Estrategista de marketing digital. Transforma visitantes em clientes. Especialista em Google Ads e redes sociais.',
+    image: '/team-celso.jpg',
+  },
+];
+
+export const faqs = [
+  {
+    id: 1,
+    question: 'O site fica com meu nome ou da agência?',
+    answer: 'Fica com seu nome e sua marca. Você é dono de tudo: domínio, hospedagem, conteúdo. A gente só criou. Se quiser trocar de agência no futuro, leva tudo.',
+  },
+  {
+    id: 2,
+    question: 'Posso cancelar a qualquer momento?',
+    answer: 'Sim. Não há contrato de permanência. Se quiser parar, é só avisar. Você fica com o site, a gente sai de cena.',
+  },
+  {
+    id: 3,
+    question: 'Vocês cuidam do domínio e hospedagem?',
+    answer: 'Sim. A gente registra, configura e renova quando precisa. Você só aproveita o site funcionando.',
+  },
+  {
+    id: 4,
+    question: 'E se eu quiser mexer no site depois?',
+    answer: 'Sem problema. Você tem acesso total. Pode mexer, atualizar conteúdo, mudar cores. A gente só está por perto se precisar de ajuda.',
+  },
+  {
+    id: 5,
+    question: 'Vocês tiram as fotos e vídeos?',
+    answer: 'Sim. A gente vai no seu lugar de negócio, tira fotos profissionais e alguns vídeos para postar nas redes. Já sai pronto para usar.',
+  },
+  {
+    id: 6,
+    question: 'Como funcionam os anúncios pagos?',
+    answer: 'A gente cria as campanhas no Google e Facebook, define o orçamento que você quer gastar, e fica de olho se está convertendo. Você paga a agência pela gestão, depois paga o anúncio direto no Google/Facebook.',
+  },
+  {
+    id: 7,
+    question: 'Preciso saber programação?',
+    answer: 'Não. Você não precisa mexer em código nenhum. O site é intuitivo. Se quiser mexer em algo mais técnico, a gente ajuda.',
+  },
+  {
+    id: 8,
+    question: 'O site funciona bem no celular?',
+    answer: 'Sim. Todo site que a gente faz é responsivo. Funciona perfeito em celular, tablet e desktop. Seus clientes vão acessar de onde quiserem.',
+  },
+  {
+    id: 9,
+    question: 'Qual a diferença entre template e site personalizado?',
+    answer: 'Template é um padrão que a gente adapta com suas cores e textos. Site personalizado é feito só para você, do zero, com sua cara. Geralmente mais caro, mas único.',
+  },
+  {
+    id: 10,
+    question: 'E se eu ficar insatisfeito?',
+    answer: 'Você vê o resultado antes de pagar. Se não gostar, a gente mexe até ficar como você quer. Só aprova quando estiver 100% feliz.',
+  },
+  {
+    id: 11,
+    question: 'Qual o prazo para ficar pronto?',
+    answer: '[PREENCHER] - depende se é template ou personalizado.',
+  },
+  {
+    id: 12,
+    question: 'Vocês fazem quantos posts por mês?',
+    answer: '[PREENCHER] - varia conforme o plano escolhido.',
+  },
+  {
+    id: 13,
+    question: 'Posso trocar de agência se não gostar?',
+    answer: 'Sim, você é dono do site. Se quiser ir embora, leva tudo. Sem problema. A gente só quer que você esteja feliz.',
+  },
+  {
+    id: 14,
+    question: 'Como vocês cobram? Tem parcelas?',
+    answer: 'Tem opção de à vista (com desconto) ou parcelado (2-3x). Falamos direto com você para acertar a melhor forma.',
+  },
+];

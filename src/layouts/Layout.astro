@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -37,6 +38,7 @@ const { title, description = 'Agência Fontes - O site com a cara do seu negóci
 
   <body>
     <slot />
+    <Footer />
 
     <script>
       // Minimal JavaScript for essential functionality

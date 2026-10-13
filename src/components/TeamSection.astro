@@ -1,0 +1,201 @@
+---
+const { items } = Astro.props;
+---
+
+<section id="quem-somos" class="team-section">
+  <div class="container">
+    <h2 class="section-title">Quem somos</h2>
+    <p class="section-subtitle">Uma mini agência, mas com paixão grande</p>
+
+    <div class="team-grid">
+      {items.map((member) => (
+        <div class="team-card">
+          <div class="team-image">
+            <div class="image-placeholder">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+          </div>
+
+          <h3>{member.name}</h3>
+          <p class="team-role">{member.role}</p>
+          <p class="team-description">{member.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="team-cta">
+      <p>Quer conhecer melhor? Fale direto com a gente no WhatsApp ou manda um email.</p>
+      <div class="team-links">
+        <a href="https://wa.me/61999165536" target="_blank" rel="noopener noreferrer" class="link-button">WhatsApp</a>
+        <a href="mailto:agenciafontes@gmail.com" class="link-button secondary">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    padding: var(--spacing-5xl) 0;
+    background-color: var(--color-bg-darkest);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.875rem, 5vw, 2.625rem);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-4xl);
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-5xl);
+  }
+
+  .team-card {
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-3xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .team-card:hover {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  }
+
+  .team-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.1) 0%, rgba(61, 136, 136, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-medium);
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mint);
+  }
+
+  .team-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .team-role {
+    color: var(--color-mint);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .team-description {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .team-cta {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .team-cta p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .team-links {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .link-button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-mint);
+    color: var(--color-bg-darkest);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .link-button:hover {
+    background-color: var(--color-mint-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(126, 202, 202, 0.3);
+  }
+
+  .link-button.secondary {
+    background-color: transparent;
+    color: var(--color-mint);
+    border: 2px solid var(--color-mint);
+  }
+
+  .link-button.secondary:hover {
+    background-color: rgba(126, 202, 202, 0.1);
+    border-color: var(--color-mint-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .team-section {
+      padding: var(--spacing-4xl) 0;
+    }
+
+    .team-grid {
+      gap: var(--spacing-2xl);
+    }
+
+    .team-card {
+      padding: var(--spacing-2xl);
+    }
+
+    .team-links {
+      flex-direction: column;
+    }
+
+    .link-button {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+const { items } = Astro.props;
+---
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2 class="section-title">Perguntas frequentes</h2>
+    <p class="section-subtitle">Tira suas dúvidas aqui</p>
+
+    <div class="faq-list">
+      {items.map((item, index) => (
+        <div class="faq-item" data-faq={index}>
+          <button class="faq-question">
+            <span>{item.question}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach((item) => {
+    const button = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    button?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Fechar todos os outros
+      faqItems.forEach((other) => {
+        other.classList.remove('open');
+      });
+
+      // Abrir o clicado se não estava aberto
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: var(--spacing-5xl) 0;
+    background-color: var(--color-bg-medium);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.875rem, 5vw, 2.625rem);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-4xl);
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .faq-item {
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--color-mint);
+  }
+
+  .faq-item.open {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: var(--color-text);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .faq-question:hover {
+    color: var(--color-mint);
+  }
+
+  .faq-question svg {
+    flex-shrink: 0;
+    color: var(--color-mint);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-question svg {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 500px;
+  }
+
+  .faq-answer p {
+    padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: var(--spacing-4xl) 0;
+    }
+
+    .faq-question {
+      padding: var(--spacing-md);
+      font-size: 0.9rem;
+    }
+
+    .faq-answer p {
+      padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+      font-size: 0.9rem;
+    }
+  }
+</style>
