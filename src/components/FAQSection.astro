@@ -138,8 +138,6 @@ const faqsByCategory = Object.keys(categories).reduce(
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: var(--spacing-3xl);
-    border-bottom: 2px solid var(--border-light);
-    padding-bottom: var(--spacing-2xl);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -165,44 +163,37 @@ const faqsByCategory = Object.keys(categories).reduce(
     font-weight: 600;
     font-size: 1rem;
     color: inherit;
+    transition: all 0.3s ease;
   }
 
   .tab-text {
     font-size: 0.7rem;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+    opacity: 0.5;
+    transition: all 0.3s ease;
   }
 
-  .faq-tab-button::after {
-    content: '';
-    position: absolute;
-    bottom: -var(--spacing-2xl);
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 30px;
-    height: 2px;
-    background-color: var(--color-mint);
-    transition: transform 0.3s ease;
-  }
-
-  .faq-tab-button:hover {
-    color: var(--color-text);
+  .faq-tab-button:hover .tab-label {
+    font-size: 1.3rem;
+    color: var(--color-mint);
   }
 
   .faq-tab-button:hover .tab-text {
-    opacity: 1;
+    opacity: 0.8;
+    color: var(--color-text);
   }
 
   .faq-tab-button.active {
     color: var(--color-mint);
   }
 
-  .faq-tab-button.active .tab-text {
-    opacity: 1;
+  .faq-tab-button.active .tab-label {
+    font-size: 1.3rem;
+    color: var(--color-mint);
   }
 
-  .faq-tab-button.active::after {
-    transform: translateX(-50%) scaleX(1);
+  .faq-tab-button.active .tab-text {
+    opacity: 1;
+    color: var(--color-text);
   }
 
   /* FAQ Content */
