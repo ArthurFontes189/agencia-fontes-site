@@ -24,8 +24,15 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Create deployment directory structure
+        run: |
+          mkdir -p public/agencia-fontes-site
+          cp -r dist/* public/agencia-fontes-site/
+          # Create index.html at root
+          echo "<!DOCTYPE html><html><head><meta http-equiv='refresh' content='0;url=/agencia-fontes-site/'></head><body></body></html>" > public/index.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./public
