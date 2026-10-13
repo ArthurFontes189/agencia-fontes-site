@@ -160,50 +160,20 @@ const { items } = Astro.props;
       padding: var(--spacing-4xl) 0;
     }
 
-    .table-header {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-sm);
+    .table-header,
+    .table-row {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
       padding: var(--spacing-md);
     }
 
-    .feature-col {
-      font-size: 0.85rem;
-    }
-
-    .option-col {
-      padding: var(--spacing-md);
-      background-color: var(--color-bg-medium);
-      border-radius: var(--radius-md);
-      margin-top: var(--spacing-sm);
-    }
-
-    .option-header {
-      font-size: 0.85rem;
-      margin-bottom: var(--spacing-sm);
+    .option-col:last-child {
+      grid-column: 1 / -1;
     }
 
     .option-header.highlighted {
-      padding: var(--spacing-sm);
-      margin: 0;
-      background: linear-gradient(135deg, rgba(126, 202, 202, 0.2) 0%, transparent 100%);
-    }
-
-    .table-row {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
       padding: var(--spacing-md);
-      align-items: flex-start;
-    }
-
-    .table-row .feature-col {
-      font-size: 0.85rem;
-      margin-bottom: var(--spacing-md);
-      font-weight: 600;
-    }
-
-    .check-mark {
-      width: 20px;
-      height: 20px;
+      margin-top: var(--spacing-md);
     }
   }
 </style>
