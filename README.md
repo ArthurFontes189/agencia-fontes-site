@@ -75,7 +75,7 @@ Em `src/data/content.ts`, procure por `[PREENCHER]`:
 
 ---
 
-## 🚀 Como Rodar
+## 🚀 Como Rodar Localmente
 
 ```bash
 npm install
@@ -83,6 +83,23 @@ npm run dev      # Dev server em http://localhost:3000
 npm run build    # Build para produção
 npm run preview  # Preview do build
 ```
+
+## 🌐 Deploy (GitHub Pages)
+
+O site é automaticamente deployado para GitHub Pages a cada push em `main`:
+
+**URL:** https://arthurfontes189.github.io/agencia-fontes-site/
+
+**Como funciona:**
+1. Faça commit e push para `main`
+2. GitHub Actions executa automaticamente (workflow `.github/workflows/deploy.yml`)
+3. Build é gerado em `dist/`
+4. Deploy acontece em ~2-3 minutos
+5. Site atualizado online
+
+**Acompanhar deploy:**
+- Vá para: https://github.com/ArthurFontes189/agencia-fontes-site/actions
+- Veja o workflow `Deploy to GitHub Pages` rodando
 
 ---
 
