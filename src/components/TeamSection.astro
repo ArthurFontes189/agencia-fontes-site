@@ -11,12 +11,16 @@ const { items } = Astro.props;
       {items.map((member) => (
         <div class="team-card">
           <div class="team-image">
-            <div class="image-placeholder">
-              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </div>
+            {member.image && member.image.endsWith('.jpg') ? (
+              <img src={member.image} alt={member.name} class="team-photo" />
+            ) : (
+              <div class="image-placeholder">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            )}
           </div>
 
           <h3>{member.name}</h3>
@@ -92,6 +96,13 @@ const { items } = Astro.props;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border-medium);
+  }
+
+  .team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
   }
 
   .image-placeholder {

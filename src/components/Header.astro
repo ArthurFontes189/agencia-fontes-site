@@ -7,10 +7,7 @@ const { slogan } = Astro.props;
     <!-- Logo -->
     <div class="logo">
       <a href="/">
-        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect x="25" y="20" width="50" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="4" />
-          <text x="50" y="65" text-anchor="middle" font-size="48" font-weight="bold" fill="currentColor">F</text>
-        </svg>
+        <img src="/logo.png" alt="Agência Fontes Logo" class="logo-img" />
         <span class="logo-text">Agência Fontes</span>
       </a>
     </div>
@@ -70,8 +67,10 @@ const { slogan } = Astro.props;
     color: var(--color-mint);
   }
 
-  .logo svg {
-    color: var(--color-mint);
+  .logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
   }
 
   .logo-text {
@@ -154,8 +153,7 @@ const { slogan } = Astro.props;
       font-size: 1rem;
     }
 
-    .logo svg {
-      width: 32px;
+    .logo-img {
       height: 32px;
     }
 

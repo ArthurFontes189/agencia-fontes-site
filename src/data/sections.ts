@@ -235,14 +235,14 @@ export const team = [
     name: 'Arthur Fontes',
     role: 'Desenvolvimento & Sistemas',
     description: 'Desenvolvedor full-stack. Cria sites rápidos, seguros e que convertem. Especialista em sistemas personalizados.',
-    image: '/team-arthur.jpg',
+    image: '/team-arthur.png',
   },
   {
     id: 2,
     name: 'Celso',
     role: 'Marketing & Vendas',
     description: 'Estrategista de marketing digital. Transforma visitantes em clientes. Especialista em Google Ads e redes sociais.',
-    image: '/team-celso.jpg',
+    image: '/team-celso.png',
   },
 ];
 
