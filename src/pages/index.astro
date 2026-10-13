@@ -4,12 +4,11 @@ import Header from '../components/Header.astro';
 import Marquee from '../components/Marquee.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import HowItWorksSection from '../components/HowItWorksSection.astro';
-import ComparisonSection from '../components/ComparisonSection.astro';
 import PricingSection from '../components/PricingSection.astro';
 import FAQSection from '../components/FAQSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import { agency } from '../data/content';
-import { services, servicesCreate, servicesMaintain, howItWorks, comparison, plans, faqs } from '../data/sections';
+import { services, servicesCreate, servicesMaintain, howItWorks, plans, faqs } from '../data/sections';
 
 const title = 'Agência Fontes - O site com a cara do seu negócio';
 const description = agency.slogan;
@@ -90,9 +89,6 @@ const description = agency.slogan;
 
     <!-- COMO FUNCIONA -->
     <HowItWorksSection items={howItWorks} />
-
-    <!-- COMPARATIVO -->
-    <ComparisonSection items={comparison} />
 
     <!-- PLANOS -->
     <PricingSection items={plans} />
