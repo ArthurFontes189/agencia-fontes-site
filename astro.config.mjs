@@ -1,9 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Configuração para GitHub Pages (projeto)
-  site: 'https://arthurfontes189.github.io/agencia-fontes-site',
-  base: '/agencia-fontes-site',
+  // GitHub Pages (user/org site)
+  site: 'https://arthurfontes189.github.io',
 
   compressHTML: true,
   vite: {
