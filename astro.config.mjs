@@ -1,12 +1,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Configuração para GitHub Pages (subpasta)
-  // site: 'https://username.github.io',
-  // base: '/agencia-fontes-site',
-
-  // Ou domínio próprio
-  site: 'https://agenciafontes.com.br',
+  // Configuração para GitHub Pages
+  site: 'https://arthurfontes189.github.io',
+  base: '/agencia-fontes-site',
 
   compressHTML: true,
   vite: {
