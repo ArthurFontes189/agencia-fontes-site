@@ -1,0 +1,93 @@
+---
+const { items } = Astro.props;
+---
+
+<div class="marquee-container">
+  <div class="marquee-content">
+    {items.map((item) => (
+      <div class="marquee-item" key={item.id}>
+        <span class="marquee-text">{item.name}</span>
+        <span class="marquee-separator">•</span>
+      </div>
+    ))}
+    {/* Duplicar para efeito infinito */}
+    {items.map((item) => (
+      <div class="marquee-item" key={`dup-${item.id}`}>
+        <span class="marquee-text">{item.name}</span>
+        <span class="marquee-separator">•</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-bg-medium);
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .marquee-content {
+    display: flex;
+    gap: var(--spacing-3xl);
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-shrink: 0;
+  }
+
+  .marquee-text {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+
+  .marquee-separator {
+    color: var(--color-mint);
+    font-size: 1.5rem;
+  }
+
+  /* Pause no hover (desktop) */
+  @media (hover: hover) {
+    .marquee-container:hover .marquee-content {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Slower no mobile */
+  @media (max-width: 768px) {
+    .marquee-content {
+      animation-duration: 50s;
+    }
+
+    .marquee-text {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+    }
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+</style>

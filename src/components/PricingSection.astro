@@ -1,0 +1,249 @@
+---
+const { items } = Astro.props;
+
+const whatsappNumber = '61999165536';
+const whatsappMessage = 'Olá! Gostaria de saber mais sobre os planos de sites personalizados.';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+---
+
+<section id="planos" class="pricing-section">
+  <div class="container">
+    <h2 class="section-title">Planos</h2>
+    <p class="section-subtitle">Escolha o que faz sentido para seu negócio</p>
+
+    <div class="pricing-grid">
+      {items.map((plan) => (
+        <div class={`pricing-card ${plan.highlighted ? 'highlighted' : ''}`}>
+          {plan.highlighted && <div class="badge">Mais popular</div>}
+
+          <h3>{plan.name}</h3>
+          <p class="plan-description">{plan.description}</p>
+
+          <div class="price">
+            <span class="currency">R$</span>
+            <span class="amount">{plan.price}</span>
+            <span class="period">/mês</span>
+          </div>
+
+          <button class="btn btn-primary" data-whatsapp={whatsappLink}>
+            {plan.cta}
+          </button>
+
+          <div class="features">
+            <p class="features-label">O que você recebe:</p>
+            <ul>
+              {plan.features.map((feature) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="pricing-footer">
+      Orçamentos personalizados e condições especiais para demandas maiores. Fale com a gente!
+    </p>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll('[data-whatsapp]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const link = button.getAttribute('data-whatsapp');
+      window.open(link, '_blank');
+    });
+  });
+</script>
+
+<style>
+  .pricing-section {
+    padding: var(--spacing-5xl) 0;
+    background-color: var(--color-bg-medium);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.875rem, 5vw, 2.625rem);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-4xl);
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .pricing-card {
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    border-color: var(--color-mint);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  }
+
+  .pricing-card.highlighted {
+    border-color: var(--color-mint);
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, rgba(126, 202, 202, 0.05) 100%);
+    transform: scale(1.05);
+  }
+
+  .pricing-card.highlighted:hover {
+    box-shadow: 0 0 40px rgba(126, 202, 202, 0.25);
+  }
+
+  .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-mint);
+    color: var(--color-bg-darkest);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .pricing-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .plan-description {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+  }
+
+  .currency {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .amount {
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-mint);
+  }
+
+  .period {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-mint);
+    color: var(--color-bg-darkest);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+
+  .btn:hover {
+    background-color: var(--color-mint-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(126, 202, 202, 0.3);
+  }
+
+  .features {
+    flex: 1;
+  }
+
+  .features-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .features li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .features li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-mint);
+  }
+
+  .pricing-footer {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .pricing-section {
+      padding: var(--spacing-4xl) 0;
+    }
+
+    .pricing-grid {
+      gap: var(--spacing-xl);
+    }
+
+    .pricing-card.highlighted {
+      transform: scale(1);
+    }
+
+    .pricing-card {
+      padding: var(--spacing-xl);
+    }
+  }
+</style>

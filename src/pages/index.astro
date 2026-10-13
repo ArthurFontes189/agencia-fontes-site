@@ -1,0 +1,381 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Marquee from '../components/Marquee.astro';
+import DifferentialsSection from '../components/DifferentialsSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import PersonasSection from '../components/PersonasSection.astro';
+import HowItWorksSection from '../components/HowItWorksSection.astro';
+import ComparisonSection from '../components/ComparisonSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import { agency } from '../data/content';
+import { services, differentials, servicesCreate, servicesMaintain, personas, howItWorks, comparison, plans } from '../data/sections';
+
+const title = 'Agência Fontes - O site com a cara do seu negócio';
+const description = agency.slogan;
+---
+
+<Layout {title} {description}>
+  <Header slogan={agency.slogan} />
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="word">O site</span>
+            <span class="word">com a cara</span>
+            <span class="word">do seu</span>
+            <span class="word text-mint">negócio</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Mostre como quer, a gente cria. Aprove antes de pagar. <strong>Mini agência para pequenos empreendedores em Brasília.</strong>
+          </p>
+
+          <div class="hero-ctas">
+            <button class="btn btn-primary" id="cta-main">
+              <span>Quero ver o meu</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <button class="btn btn-secondary" id="cta-secondary">
+              Saiba mais
+            </button>
+          </div>
+
+          <p class="hero-subtext">
+            📍 Brasília, DF • 🚀 Rápido e acessível • 💬 Demo primeiro
+          </p>
+        </div>
+
+        <div class="hero-visual">
+          <!-- SVG Mockup de browser -->
+          <div class="browser-mockup">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="browser-url">agencia-fontes.com.br</div>
+            </div>
+            <div class="browser-content">
+              <div class="hero-gradient"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE DE SERVIÇOS -->
+    <Marquee items={services} />
+
+    <!-- DIFERENCIAIS -->
+    <DifferentialsSection items={differentials} />
+
+    <!-- SERVIÇOS - CRIAR -->
+    <ServicesSection
+      title="O que a gente cria"
+      subtitle="Tudo que você precisa para começar online"
+      items={servicesCreate}
+    />
+
+    <!-- SERVIÇOS - MANTER E CRESCER -->
+    <ServicesSection
+      title="O que a gente mantém e faz crescer"
+      subtitle="Depois do site pronto, é nossa vez de trabalhar"
+      items={servicesMaintain}
+    />
+
+    <!-- PARA QUEM -->
+    <PersonasSection items={personas} />
+
+    <!-- COMO FUNCIONA -->
+    <HowItWorksSection items={howItWorks} />
+
+    <!-- COMPARATIVO -->
+    <ComparisonSection items={comparison} />
+
+    <!-- PLANOS -->
+    <PricingSection items={plans} />
+  </main>
+</Layout>
+
+<style>
+  main {
+    overflow: hidden;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    padding: clamp(3rem, 10vw, 7rem) 0;
+    background: linear-gradient(135deg, var(--color-bg-darkest) 0%, var(--color-bg-dark) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(126, 202, 202, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(61, 136, 136, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    line-height: 1.1;
+  }
+
+  .word {
+    display: inline-block;
+    animation: slideUp 0.7s ease-out;
+  }
+
+  .word:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .word:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .word:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .word:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .text-mint {
+    color: var(--color-mint);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .hero-subtitle strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+  }
+
+  .btn-primary {
+    background-color: var(--color-mint);
+    color: var(--color-bg-darkest);
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: var(--color-mint-light);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.4);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-mint);
+    border: 2px solid var(--color-mint);
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    background-color: rgba(126, 202, 202, 0.1);
+    border-color: var(--color-mint-light);
+  }
+
+  .hero-subtext {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--color-text-tertiary);
+    margin-top: var(--spacing-lg);
+  }
+
+  /* BROWSER MOCKUP */
+  .hero-visual {
+    display: none;
+    animation: fadeInRight 0.8s ease-out 0.5s both;
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .browser-mockup {
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg-medium);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .browser-header {
+    background-color: var(--color-bg-dark);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .browser-dots div {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--border-medium);
+  }
+
+  .browser-dots div:nth-child(1) {
+    background-color: var(--color-error);
+  }
+
+  .browser-dots div:nth-child(2) {
+    background-color: var(--color-warning);
+  }
+
+  .browser-dots div:nth-child(3) {
+    background-color: var(--color-success);
+  }
+
+  .browser-url {
+    color: var(--color-text-tertiary);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+  }
+
+  .browser-content {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-mint-dark) 0%, var(--color-mint-darkest) 100%);
+  }
+
+  /* RESPONSIVE */
+  @media (min-width: 1024px) {
+    .hero-visual {
+      display: block;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: clamp(2rem, 8vw, 4rem) 0;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // CTA Button functionality
+  const whatsappNumber = '61999165536';
+  const whatsappMessage = 'Olá! Quero ver como ficaria o site do meu negócio.';
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  const ctaMain = document.getElementById('cta-main');
+  const ctaSecondary = document.getElementById('cta-secondary');
+
+  if (ctaMain) {
+    ctaMain.addEventListener('click', () => {
+      window.open(whatsappLink, '_blank');
+    });
+  }
+
+  if (ctaSecondary) {
+    ctaSecondary.addEventListener('click', () => {
+      const servicos = document.getElementById('servicos');
+      if (servicos) {
+        servicos.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+</script>

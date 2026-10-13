@@ -1,0 +1,20 @@
+{
+  "name": "agencia-fontes-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Site da Agência Fontes - Mini agência para pequenos empreendedores",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.0.1",
+    "astro": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}

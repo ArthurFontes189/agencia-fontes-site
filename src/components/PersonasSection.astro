@@ -1,0 +1,168 @@
+---
+const { items } = Astro.props;
+
+const getIcon = (iconName: string) => {
+  const icons: Record<string, string> = {
+    briefcase: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    </svg>`,
+    store: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l1.7-8.35a1 1 0 0 1 .99-.65h7.62a1 1 0 0 1 .99.65L18 9"/>
+      <path d="M6 9H4a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-2"/>
+      <circle cx="9" cy="17" r="1"/>
+      <circle cx="15" cy="17" r="1"/>
+    </svg>`,
+    tool: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 0-8.94-8.94l-2.83 2.83"/>
+      <path d="m21 21-7.35-7.35"/>
+    </svg>`,
+  };
+  return icons[iconName] || icons.briefcase;
+};
+---
+
+<section id="para-quem" class="personas-section">
+  <div class="container">
+    <h2 class="section-title">Para quem a gente cria</h2>
+    <p class="section-subtitle">Pequenos empreendedores que querem crescer online</p>
+
+    <div class="personas-grid">
+      {items.map((persona) => (
+        <div class="persona-card">
+          <div class="persona-icon">
+            <div set:html={getIcon(persona.icon)} />
+          </div>
+
+          <h3>{persona.title}</h3>
+          <p class="persona-subtitle">{persona.subtitle}</p>
+          <p class="persona-description">{persona.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .personas-section {
+    padding: var(--spacing-5xl) 0;
+    background-color: var(--color-bg-darkest);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.875rem, 5vw, 2.625rem);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-4xl);
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .personas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-3xl);
+  }
+
+  .persona-card {
+    padding: var(--spacing-3xl);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .persona-card:hover {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+    transform: translateY(-6px);
+    box-shadow: 0 0 40px rgba(126, 202, 202, 0.2);
+  }
+
+  .persona-card:hover::before {
+    opacity: 1;
+  }
+
+  .persona-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.15) 0%, rgba(61, 136, 136, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mint);
+    transition: all 0.3s ease;
+  }
+
+  .persona-card:hover .persona-icon {
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.25) 0%, rgba(61, 136, 136, 0.15) 100%);
+    border-color: var(--color-mint);
+    transform: scale(1.1);
+  }
+
+  .persona-card h3 {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .persona-subtitle {
+    position: relative;
+    z-index: 1;
+    font-size: 0.875rem;
+    color: var(--color-mint);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .persona-description {
+    position: relative;
+    z-index: 1;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .personas-section {
+      padding: var(--spacing-4xl) 0;
+    }
+
+    .personas-grid {
+      gap: var(--spacing-2xl);
+    }
+
+    .persona-card {
+      padding: var(--spacing-2xl);
+    }
+  }
+</style>

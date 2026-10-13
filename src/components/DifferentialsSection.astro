@@ -1,0 +1,135 @@
+---
+const { items } = Astro.props;
+
+const getIcon = (iconName: string) => {
+  const icons: Record<string, string> = {
+    eye: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>`,
+    headset: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+      <path d="M3 18a9 9 0 0 0 18 0"/>
+      <path d="M9 12v4"/>
+      <path d="M15 12v4"/>
+      <rect x="9" y="14" width="6" height="6" rx="1"/>
+    </svg>`,
+    wrench: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 0-8.94-8.94l-2.83 2.83"/>
+      <path d="m21 21-7.35-7.35"/>
+    </svg>`,
+  };
+  return icons[iconName] || icons.eye;
+};
+---
+
+<section id="diferenciais" class="diferenciais-section">
+  <div class="container">
+    <h2 class="section-title">Por que escolher a gente</h2>
+    <p class="section-subtitle">Não somos agência grande. Somos ágil, pessoal e focada em resultado.</p>
+
+    <div class="diferenciais-grid">
+      {items.map((item) => (
+        <div class="differential-card">
+          <div class="icon-wrapper">
+            <div set:html={getIcon(item.icon)} class="icon" />
+          </div>
+
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .diferenciais-section {
+    padding: var(--spacing-5xl) 0;
+    background-color: var(--color-bg-darkest);
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(1.875rem, 5vw, 2.625rem);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-4xl);
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-3xl);
+  }
+
+  .differential-card {
+    padding: var(--spacing-3xl);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    transition: all 0.3s ease;
+  }
+
+  .differential-card:hover {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.1) 0%, rgba(61, 136, 136, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-medium);
+  }
+
+  .icon {
+    color: var(--color-mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .differential-card h3 {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: var(--color-text);
+  }
+
+  .differential-card p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .diferenciais-section {
+      padding: var(--spacing-4xl) 0;
+    }
+
+    .diferenciais-grid {
+      gap: var(--spacing-2xl);
+    }
+
+    .differential-card {
+      padding: var(--spacing-2xl);
+    }
+  }
+</style>

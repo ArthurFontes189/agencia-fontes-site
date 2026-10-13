@@ -1,0 +1,230 @@
+/**
+ * SEÇÕES - Dados das seções do site
+ */
+
+export const services = [
+  { id: 1, name: 'Sites & Vitrines' },
+  { id: 2, name: 'Google Meu Negócio' },
+  { id: 3, name: 'Fotos & Vídeos' },
+  { id: 4, name: 'Anúncios Pagos' },
+  { id: 5, name: 'Sistemas & Painéis' },
+  { id: 6, name: 'Manutenção' },
+];
+
+export const differentials = [
+  {
+    id: 1,
+    title: 'Veja antes de pagar',
+    description: 'Mostre como quer. A gente cria. Você aprova o resultado. Só paga quando está feliz.',
+    icon: 'eye',
+  },
+  {
+    id: 2,
+    title: 'Suporte dedicado',
+    description: 'Arthur e Celso cuidam pessoalmente. Não é fila de ticket. É WhatsApp direto.',
+    icon: 'headset',
+  },
+  {
+    id: 3,
+    title: 'Manutenção incluída',
+    description: 'Primeira revisão grátis. Depois oferecemos planos mensais acessíveis. Sem surpresas.',
+    icon: 'wrench',
+  },
+];
+
+export const servicesCreate = [
+  {
+    id: 1,
+    title: 'Website',
+    description: 'Site responsivo, rápido e bonito. Com sua marca, seu jeito.',
+    span: 1,
+    icon: 'globe',
+  },
+  {
+    id: 2,
+    title: 'Google Meu Negócio',
+    description: 'Otimizado, com fotos e avaliações. Seu cliente te acha no Maps.',
+    span: 1,
+    icon: 'map-pin',
+  },
+  {
+    id: 3,
+    title: 'Domínio & Hospedagem',
+    description: 'Registramos, configuramos, cuidamos. Você só usa.',
+    span: 1,
+    icon: 'server',
+  },
+  {
+    id: 4,
+    title: 'Foto do Negócio',
+    description: 'Tiramos fotos profissionais do seu espaço, produtos, equipe. Pronto para postar.',
+    span: 2,
+    icon: 'camera',
+  },
+];
+
+export const servicesMaintain = [
+  {
+    id: 1,
+    title: 'Conteúdo Mensal',
+    description: 'Posts, fotos, vídeos. Seu negócio ativo nas redes.',
+    span: 1,
+    icon: 'edit-3',
+  },
+  {
+    id: 2,
+    title: 'Anúncios Pagos',
+    description: 'Google e Facebook. Criamos, testamos, otimizamos. Você vê resultados.',
+    span: 2,
+    icon: 'trending-up',
+  },
+  {
+    id: 3,
+    title: 'Sistema de Agendamentos',
+    description: 'Seu cliente marca online. Você recebe automaticamente. Sem WhatsApp bagunçado.',
+    span: 1,
+    icon: 'calendar',
+  },
+  {
+    id: 4,
+    title: 'Suporte & Ajustes',
+    description: 'Quer mudar algo? Tá lento? Não carrega? Chamou a gente, resolvido.',
+    span: 1,
+    icon: 'help-circle',
+  },
+];
+
+export const personas = [
+  {
+    id: 1,
+    title: 'Autônomo',
+    subtitle: 'Designer, Eletricista, Consultor',
+    description: 'Precisa de um site simples que mostre seu trabalho e facilite o contato. Sem complicação.',
+    icon: 'briefcase',
+  },
+  {
+    id: 2,
+    title: 'Comércio Local',
+    subtitle: 'Loja, Restaurante, Salão',
+    description: 'Precisa que o cliente o encontre no Google Maps, veja fotos e marque online. Rápido e fácil.',
+    icon: 'store',
+  },
+  {
+    id: 3,
+    title: 'Prestador de Serviço',
+    subtitle: 'Encanador, Advogado, Contável',
+    description: 'Precisa de credibilidade online. Site profissional, sistema de agendamento, conteúdo regular.',
+    icon: 'tool',
+  },
+];
+
+export const howItWorks = [
+  {
+    step: 1,
+    title: 'Conversa Rápida',
+    description: 'Você nos conta sua visão, seus clientes, seu orçamento. A gente ouve.',
+    terminal: '$ agencia-fontes --descoberta',
+  },
+  {
+    step: 2,
+    title: 'Mostramos Pronto',
+    description: 'Criamos um protótipo funcional. Sem esperar semanas. Você vê exatamente como fica.',
+    terminal: '$ npm run build && deploy --preview',
+  },
+  {
+    step: 3,
+    title: 'Você Aprova',
+    description: 'Gostou? Pediu ajustes? A gente mexe. Aprova só quando estiver 100% feliz.',
+    terminal: '$ git commit -m "aprovado pelo cliente"',
+  },
+  {
+    step: 4,
+    title: 'No Ar',
+    description: 'Publicamos. Seu site está vivo. Você recebe a documentação e suporte.',
+    terminal: '$ git push origin main --deploy',
+  },
+];
+
+export const comparison = [
+  {
+    feature: 'Site responsivo',
+    generic: true,
+    agencia: true,
+  },
+  {
+    feature: 'Design original',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Otimizado para conversão',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Domínio e hospedagem',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Suporte dedicado',
+    generic: false,
+    agencia: true,
+  },
+  {
+    feature: 'Sistema de agendamento',
+    generic: false,
+    agencia: true,
+  },
+];
+
+export const plans = [
+  {
+    id: 1,
+    name: 'Essencial',
+    price: '[PREENCHER]',
+    description: 'Para quem está começando',
+    features: [
+      'Website responsivo',
+      'Domínio + Hospedagem',
+      'Email profissional',
+      'Google Meu Negócio',
+      'Primeira revisão grátis',
+      'Suporte por WhatsApp',
+    ],
+    cta: 'Quero começar',
+    highlighted: false,
+  },
+  {
+    id: 2,
+    name: 'Profissional',
+    price: '[PREENCHER]',
+    description: 'O mais escolhido',
+    features: [
+      'Tudo do Essencial',
+      'Fotos profissionais do negócio',
+      'Conteúdo mensal (4 posts)',
+      'Anúncios pagos (Google + Facebook)',
+      'Sistema de agendamentos',
+      'Análise de desempenho mensal',
+    ],
+    cta: 'Começar agora',
+    highlighted: true,
+  },
+  {
+    id: 3,
+    name: 'Completo',
+    price: '[PREENCHER]',
+    description: 'Crescimento garantido',
+    features: [
+      'Tudo do Profissional',
+      'Produção de vídeos curtos',
+      'Gestão completa de redes sociais',
+      'Otimização contínua',
+      'Relatório analítico completo',
+      'Acompanhamento estratégico mensal',
+    ],
+    cta: 'Falar com especialista',
+    highlighted: false,
+  },
+];
