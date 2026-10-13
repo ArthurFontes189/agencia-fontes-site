@@ -174,7 +174,7 @@ const { items } = Astro.props;
     line-height: 1.6;
   }
 
-  /* Responsive - Mobile timeline goes horizontal */
+  /* Responsive - Mobile timeline goes vertical stacked */
   @media (max-width: 768px) {
     .how-it-works-section {
       padding: var(--spacing-4xl) 0;
@@ -182,25 +182,33 @@ const { items } = Astro.props;
 
     .timeline-container {
       max-width: 100%;
+      padding: 0 var(--spacing-md);
     }
 
     .timeline-step {
-      grid-template-columns: 1fr;
+      grid-template-columns: 50px 1fr;
       gap: var(--spacing-lg);
       padding: var(--spacing-xl) 0;
-      padding-left: var(--spacing-2xl);
     }
 
     .timeline-dot {
-      position: absolute;
-      left: -30px;
-      height: auto;
+      position: relative;
+      left: 0;
+      height: 50px;
+    }
+
+    .dot-inner {
+      width: 45px;
+      height: 45px;
+      font-size: 1.1rem;
     }
 
     .timeline-line {
-      left: -30px;
+      position: absolute;
+      left: 22px;
       top: 50px;
-      height: calc(100% - 40px);
+      width: 2px;
+      height: calc(100% + 20px);
     }
 
     .step-content {
