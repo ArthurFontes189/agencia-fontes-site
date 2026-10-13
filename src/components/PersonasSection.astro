@@ -27,9 +27,26 @@ const getIcon = (iconName: string) => {
     <h2 class="section-title">Para quem a gente cria</h2>
     <p class="section-subtitle">Pequenos empreendedores que querem crescer online</p>
 
-    <div class="personas-grid">
-      {items.map((persona) => (
-        <div class="persona-card">
+    {/* Tabs Navigation */}
+    <div class="personas-tabs">
+      {items.map((persona, index) => (
+        <button
+          class={`tab-button ${index === 0 ? 'active' : ''}`}
+          data-tab={index}
+          aria-selected={index === 0}
+        >
+          {persona.title}
+        </button>
+      ))}
+    </div>
+
+    {/* Personas Content */}
+    <div class="personas-content">
+      {items.map((persona, index) => (
+        <div
+          class={`persona-card ${index === 0 ? 'active' : ''}`}
+          data-persona={index}
+        >
           <div class="persona-icon">
             <div set:html={getIcon(persona.icon)} />
           </div>
@@ -63,10 +80,59 @@ const getIcon = (iconName: string) => {
     font-size: clamp(1rem, 2vw, 1.125rem);
   }
 
-  .personas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-3xl);
+  /* Tabs Navigation */
+  .personas-tabs {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-4xl);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .tab-button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: clamp(0.95rem, 2vw, 1rem);
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: -var(--spacing-2xl);
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-mint);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .tab-button:hover {
+    color: var(--color-text);
+  }
+
+  .tab-button.active {
+    color: var(--color-mint);
+  }
+
+  .tab-button.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Personas Content */
+  .personas-content {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    height: auto;
   }
 
   .persona-card {
@@ -78,8 +144,32 @@ const getIcon = (iconName: string) => {
     flex-direction: column;
     gap: var(--spacing-lg);
     transition: all 0.3s ease;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    pointer-events: none;
+  }
+
+  .persona-card.active {
     position: relative;
-    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    animation: slideInPersona 0.4s ease-out;
+  }
+
+  @keyframes slideInPersona {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .persona-card::before {
@@ -95,20 +185,13 @@ const getIcon = (iconName: string) => {
     pointer-events: none;
   }
 
-  .persona-card:hover {
-    border-color: var(--color-mint);
-    background-color: var(--color-bg-medium);
-    transform: translateY(-6px);
-    box-shadow: 0 0 40px rgba(126, 202, 202, 0.2);
-  }
-
   .persona-card:hover::before {
     opacity: 1;
   }
 
   .persona-icon {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, rgba(126, 202, 202, 0.15) 0%, rgba(61, 136, 136, 0.05) 100%);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-medium);
@@ -119,16 +202,10 @@ const getIcon = (iconName: string) => {
     transition: all 0.3s ease;
   }
 
-  .persona-card:hover .persona-icon {
-    background: linear-gradient(135deg, rgba(126, 202, 202, 0.25) 0%, rgba(61, 136, 136, 0.15) 100%);
-    border-color: var(--color-mint);
-    transform: scale(1.1);
-  }
-
   .persona-card h3 {
     position: relative;
     z-index: 1;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
     color: var(--color-text);
     margin: 0;
   }
@@ -136,7 +213,7 @@ const getIcon = (iconName: string) => {
   .persona-subtitle {
     position: relative;
     z-index: 1;
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: var(--color-mint);
     font-weight: 600;
     margin: 0;
@@ -157,8 +234,14 @@ const getIcon = (iconName: string) => {
       padding: var(--spacing-4xl) 0;
     }
 
-    .personas-grid {
-      gap: var(--spacing-2xl);
+    .personas-tabs {
+      margin-bottom: var(--spacing-3xl);
+      gap: var(--spacing-sm);
+    }
+
+    .tab-button {
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 0.9rem;
     }
 
     .persona-card {
@@ -166,3 +249,23 @@ const getIcon = (iconName: string) => {
     }
   }
 </style>
+
+<script>
+  // Tab switching functionality
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const personaCards = document.querySelectorAll('.persona-card');
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabIndex = button.getAttribute('data-tab');
+
+      // Remove active class from all tabs and personas
+      tabButtons.forEach((btn) => btn.classList.remove('active'));
+      personaCards.forEach((card) => card.classList.remove('active'));
+
+      // Add active class to clicked tab and corresponding persona
+      button.classList.add('active');
+      document.querySelector(`[data-persona="${tabIndex}"]`)?.classList.add('active');
+    });
+  });
+</script>

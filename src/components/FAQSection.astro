@@ -1,5 +1,20 @@
 ---
 const { items } = Astro.props;
+
+// Group FAQs by category
+const categories = {
+  gerais: 'Gerais',
+  tecnico: 'Técnico',
+  preco: 'Preço',
+};
+
+const faqsByCategory = Object.keys(categories).reduce(
+  (acc, cat) => {
+    acc[cat] = items.filter((item) => item.category === cat);
+    return acc;
+  },
+  {} as Record<string, typeof items>
+);
 ---
 
 <section id="faq" class="faq-section">
@@ -7,17 +22,39 @@ const { items } = Astro.props;
     <h2 class="section-title">Perguntas frequentes</h2>
     <p class="section-subtitle">Tira suas dúvidas aqui</p>
 
-    <div class="faq-list">
-      {items.map((item, index) => (
-        <div class="faq-item" data-faq={index}>
-          <button class="faq-question">
-            <span>{item.question}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>{item.answer}</p>
+    {/* FAQ Categories Tabs */}
+    <div class="faq-tabs">
+      {Object.keys(categories).map((category) => (
+        <button
+          class={`faq-tab-button ${category === 'gerais' ? 'active' : ''}`}
+          data-category={category}
+        >
+          {categories[category as keyof typeof categories]}
+        </button>
+      ))}
+    </div>
+
+    {/* FAQ Content by Category */}
+    <div class="faq-content">
+      {Object.keys(categories).map((category) => (
+        <div
+          class={`faq-category ${category === 'gerais' ? 'active' : ''}`}
+          data-category-content={category}
+        >
+          <div class="faq-list">
+            {faqsByCategory[category].map((item, index) => (
+              <div class="faq-item" data-faq={index}>
+                <button class="faq-question">
+                  <span>{item.question}</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+                <div class="faq-answer">
+                  <p>{item.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ))}
@@ -26,17 +63,41 @@ const { items } = Astro.props;
 </section>
 
 <script>
+  // Category tab switching
+  const tabButtons = document.querySelectorAll('.faq-tab-button');
+  const categoryContents = document.querySelectorAll('.faq-category');
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+
+      // Remove active from all tabs and content
+      tabButtons.forEach((btn) => btn.classList.remove('active'));
+      categoryContents.forEach((content) => content.classList.remove('active'));
+
+      // Add active to clicked tab and corresponding content
+      button.classList.add('active');
+      document.querySelector(`[data-category-content="${category}"]`)?.classList.add('active');
+
+      // Reset all FAQ items in new category
+      const newFaqItems = document.querySelectorAll(`[data-category-content="${category}"] .faq-item`);
+      newFaqItems.forEach((item) => item.classList.remove('open'));
+    });
+  });
+
+  // FAQ accordion functionality
   const faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach((item) => {
     const button = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
 
     button?.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
+      const currentCategory = item.closest('.faq-category');
+      const siblingItems = currentCategory?.querySelectorAll('.faq-item') || [];
 
-      // Fechar todos os outros
-      faqItems.forEach((other) => {
+      // Fechar todos os outros na categoria
+      siblingItems.forEach((other) => {
         other.classList.remove('open');
       });
 
@@ -68,9 +129,80 @@ const { items } = Astro.props;
     font-size: clamp(1rem, 2vw, 1.125rem);
   }
 
-  .faq-list {
+  /* FAQ Tabs */
+  .faq-tabs {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-3xl);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq-tab-button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .faq-tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: -var(--spacing-2xl);
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-mint);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-tab-button:hover {
+    color: var(--color-text);
+  }
+
+  .faq-tab-button.active {
+    color: var(--color-mint);
+  }
+
+  .faq-tab-button.active::after {
+    transform: scaleX(1);
+  }
+
+  /* FAQ Content */
+  .faq-content {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+  }
+
+  .faq-category {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .faq-category.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    pointer-events: auto;
+  }
+
+  .faq-list {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);

@@ -28,15 +28,17 @@ const getIcon = (iconName: string) => {
     <h2 class="section-title">Por que escolher a gente</h2>
     <p class="section-subtitle">Não somos agência grande. Somos ágil, pessoal e focada em resultado.</p>
 
-    <div class="diferenciais-grid">
-      {items.map((item) => (
-        <div class="differential-card">
+    <div class="diferenciais-layout">
+      {items.map((item, index) => (
+        <div class={`differential-item differential-item-${index + 1}`}>
           <div class="icon-wrapper">
             <div set:html={getIcon(item.icon)} class="icon" />
           </div>
 
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
+          <div class="text-content">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -64,39 +66,62 @@ const getIcon = (iconName: string) => {
     font-size: clamp(1rem, 2vw, 1.125rem);
   }
 
-  .diferenciais-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-3xl);
-  }
-
-  .differential-card {
-    padding: var(--spacing-3xl);
-    background-color: var(--color-bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
+  .diferenciais-layout {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
-    transition: all 0.3s ease;
+    gap: var(--spacing-4xl);
   }
 
-  .differential-card:hover {
-    border-color: var(--color-mint);
-    background-color: var(--color-bg-medium);
-    transform: translateY(-4px);
-    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  .differential-item {
+    display: grid;
+    gap: var(--spacing-2xl);
+    align-items: center;
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .differential-item-1 {
+    animation-delay: 0.1s;
+    grid-template-columns: auto 1fr;
+  }
+
+  .differential-item-2 {
+    animation-delay: 0.2s;
+    grid-template-columns: 1fr auto;
+  }
+
+  .differential-item-3 {
+    animation-delay: 0.3s;
+    grid-template-columns: auto 1fr;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, rgba(126, 202, 202, 0.1) 0%, rgba(61, 136, 136, 0.05) 100%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.15) 0%, rgba(61, 136, 136, 0.05) 100%);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-medium);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .differential-item:hover .icon-wrapper {
+    background: linear-gradient(135deg, rgba(126, 202, 202, 0.25) 0%, rgba(61, 136, 136, 0.15) 100%);
+    border-color: var(--color-mint);
+    transform: scale(1.1);
   }
 
   .icon {
@@ -106,12 +131,27 @@ const getIcon = (iconName: string) => {
     justify-content: center;
   }
 
-  .differential-card h3 {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    color: var(--color-text);
+  .text-content {
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
   }
 
-  .differential-card p {
+  .differential-item:hover .text-content {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  }
+
+  .text-content h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .text-content p {
     color: var(--color-text-secondary);
     margin: 0;
     font-size: 0.95rem;
@@ -119,17 +159,39 @@ const getIcon = (iconName: string) => {
   }
 
   /* Responsive */
+  @media (max-width: 1024px) {
+    .differential-item-1,
+    .differential-item-2,
+    .differential-item-3 {
+      grid-template-columns: auto 1fr;
+    }
+  }
+
   @media (max-width: 768px) {
     .diferenciais-section {
       padding: var(--spacing-4xl) 0;
     }
 
-    .diferenciais-grid {
-      gap: var(--spacing-2xl);
+    .diferenciais-layout {
+      gap: var(--spacing-3xl);
     }
 
-    .differential-card {
+    .differential-item {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .icon-wrapper {
+      width: 70px;
+      height: 70px;
+    }
+
+    .text-content {
       padding: var(--spacing-2xl);
+    }
+
+    .text-content h3 {
+      font-size: 1.25rem;
     }
   }
 </style>

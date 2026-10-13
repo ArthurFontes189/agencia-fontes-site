@@ -7,36 +7,22 @@ const { items } = Astro.props;
     <h2 class="section-title">Como funciona</h2>
     <p class="section-subtitle">4 passos simples do seu site à realidade</p>
 
-    <div class="how-it-works-grid">
+    <div class="timeline-container">
       {items.map((item, index) => (
-        <div class="step-card" data-step={item.step}>
-          <div class="step-number">{item.step}</div>
-
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-
-          <div class="step-terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
-            <div class="terminal-content">
-              <span class="terminal-prompt">$</span>
-              <span class="terminal-text" data-text={item.terminal}>{item.terminal}</span>
-            </div>
+        <div class="timeline-step" data-step={item.step}>
+          {/* Timeline dot/connector */}
+          <div class="timeline-dot">
+            <div class="dot-inner">{item.step}</div>
           </div>
 
-          {index < items.length - 1 && (
-            <div class="step-arrow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </div>
-          )}
+          {/* Timeline connector line (except last item) */}
+          {index < items.length - 1 && <div class="timeline-line"></div>}
+
+          {/* Step content */}
+          <div class="step-content">
+            <h3 class="step-title">{item.title}</h3>
+            <p class="step-description">{item.description}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -65,192 +51,175 @@ const { items } = Astro.props;
     font-size: clamp(1rem, 2vw, 1.125rem);
   }
 
-  .how-it-works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-2xl);
-    position: relative;
-  }
-
-  .step-card {
-    background-color: var(--color-bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+  /* Timeline Layout */
+  .timeline-container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
-    transition: all 0.3s ease;
+    gap: 0;
     position: relative;
-    animation: slideUp 0.6s ease-out;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .step-card[data-step="1"] {
+  .timeline-step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: flex-start;
+    position: relative;
+    padding: var(--spacing-2xl) 0;
+    opacity: 0;
+    animation: fadeInStep 0.6s ease-out forwards;
+  }
+
+  .timeline-step[data-step="1"] {
     animation-delay: 0.1s;
   }
 
-  .step-card[data-step="2"] {
-    animation-delay: 0.2s;
+  .timeline-step[data-step="2"] {
+    animation-delay: 0.25s;
   }
 
-  .step-card[data-step="3"] {
-    animation-delay: 0.3s;
-  }
-
-  .step-card[data-step="4"] {
+  .timeline-step[data-step="3"] {
     animation-delay: 0.4s;
   }
 
-  @keyframes slideUp {
+  .timeline-step[data-step="4"] {
+    animation-delay: 0.55s;
+  }
+
+  @keyframes fadeInStep {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateX(-20px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
   }
 
-  .step-card:hover {
-    border-color: var(--color-mint);
-    background-color: var(--color-bg-medium);
-    transform: translateY(-4px);
-    box-shadow: 0 0 30px rgba(126, 202, 202, 0.15);
+  /* Timeline Dot */
+  .timeline-dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    z-index: 2;
   }
 
-  .step-number {
-    width: 40px;
-    height: 40px;
+  .dot-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--color-mint-dark) 0%, var(--color-mint-darkest) 100%);
-    border-radius: var(--radius-md);
+    border: 3px solid var(--color-bg-darkest);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    color: var(--color-mint);
     font-size: 1.25rem;
-  }
-
-  .step-card h3 {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .step-card p {
-    color: var(--color-text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Terminal */
-  .step-terminal {
-    border: 1px solid var(--border-medium);
-    border-radius: var(--radius-md);
-    background-color: rgba(10, 14, 39, 0.5);
-    overflow: hidden;
-    font-family: var(--font-mono);
-  }
-
-  .terminal-header {
-    background-color: var(--color-bg-dark);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    align-items: center;
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-
-  .terminal-dots div {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--border-medium);
-  }
-
-  .terminal-dots div:nth-child(1) {
-    background-color: var(--color-error);
-  }
-
-  .terminal-dots div:nth-child(2) {
-    background-color: var(--color-warning);
-  }
-
-  .terminal-dots div:nth-child(3) {
-    background-color: var(--color-success);
-  }
-
-  .terminal-content {
-    padding: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
     color: var(--color-mint);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    white-space: nowrap;
-    overflow: hidden;
+    box-shadow: 0 0 20px rgba(126, 202, 202, 0.3);
+    transition: all 0.3s ease;
   }
 
-  .terminal-prompt {
-    color: var(--color-mint-light);
-    font-weight: 600;
+  .timeline-step:hover .dot-inner {
+    box-shadow: 0 0 30px rgba(126, 202, 202, 0.5);
+    transform: scale(1.1);
   }
 
-  .terminal-text {
-    animation: typewriter 1.5s steps(30, end) forwards;
-    display: inline-block;
+  /* Timeline Connector Line */
+  .timeline-line {
+    position: absolute;
+    left: 29px;
+    top: 60px;
+    width: 2px;
+    height: calc(100% + 20px);
+    background: linear-gradient(to bottom, var(--color-mint), transparent);
+    z-index: 1;
   }
 
-  @keyframes typewriter {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
-
-  /* Step arrow (desktop only) */
-  .step-arrow {
+  .timeline-step:last-child .timeline-line {
     display: none;
   }
 
-  @media (min-width: 1024px) {
-    .step-arrow {
-      display: flex;
-      position: absolute;
-      right: -30px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--color-mint);
-      opacity: 0.3;
-      pointer-events: none;
-    }
-
-    .step-card:last-child .step-arrow {
-      display: none;
-    }
+  /* Step Content */
+  .step-content {
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
   }
 
-  /* Responsive */
+  .timeline-step:hover .step-content {
+    border-color: var(--color-mint);
+    background-color: var(--color-bg-medium);
+    box-shadow: 0 0 20px rgba(126, 202, 202, 0.15);
+  }
+
+  .step-title {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .step-description {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Responsive - Mobile timeline goes horizontal */
   @media (max-width: 768px) {
     .how-it-works-section {
       padding: var(--spacing-4xl) 0;
     }
 
-    .how-it-works-grid {
-      gap: var(--spacing-xl);
+    .timeline-container {
+      max-width: 100%;
     }
 
-    .terminal-content {
-      font-size: 0.75rem;
+    .timeline-step {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      padding: var(--spacing-xl) 0;
+      padding-left: var(--spacing-2xl);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      height: auto;
+    }
+
+    .timeline-line {
+      left: -30px;
+      top: 50px;
+      height: calc(100% - 40px);
+    }
+
+    .step-content {
+      padding: var(--spacing-lg);
+    }
+
+    .step-title {
+      font-size: 1.125rem;
+    }
+
+    .step-description {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Tablet - adjust spacing */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .timeline-step {
+      padding: var(--spacing-2xl) 0;
     }
   }
 </style>
