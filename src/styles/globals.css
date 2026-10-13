@@ -2,20 +2,20 @@
 
 /* ==================== CSS VARIABLES ==================== */
 :root {
-  /* Colors - Menta */
-  --color-mint: #7ECECA;
-  --color-mint-light: #A8E0E0;
-  --color-mint-lighter: #C5EAEA;
-  --color-mint-lightest: #DFFAFA;
-  --color-mint-dark: #5BA8A8;
-  --color-mint-darker: #3D8888;
-  --color-mint-darkest: #1A5C5C;
+  /* Colors - Tech Blue Palette */
+  --color-mint: #185DF1;
+  --color-mint-light: #4D7FFF;
+  --color-mint-lighter: #7DA3FF;
+  --color-mint-lightest: #B8D4FF;
+  --color-mint-dark: #1047C9;
+  --color-mint-darker: #0A2EA0;
+  --color-mint-darkest: #031130;
 
-  /* Background - Azul-esverdeado escuro */
-  --color-bg-darkest: #0D1F21;
-  --color-bg-dark: #162D32;
-  --color-bg-medium: #1F3A3D;
-  --color-bg-light: #F8FAFB;
+  /* Background - Azul Profundo Tech */
+  --color-bg-darkest: #031130;
+  --color-bg-dark: #0A1F45;
+  --color-bg-medium: #132B5A;
+  --color-bg-light: #F3F7FE;
 
   /* Text */
   --color-text: #FFFFFF;
@@ -82,6 +82,11 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg-darkest);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(24, 93, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(24, 93, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(16, 71, 201, 0.08) 0%, transparent 50%);
+  background-attachment: fixed;
   color: var(--color-text);
   line-height: 1.6;
   font-size: 16px;
