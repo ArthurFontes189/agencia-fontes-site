@@ -4,11 +4,11 @@
 
 export const services = [
   { id: 1, name: 'Sites & Vitrines' },
-  { id: 2, name: 'Google Meu Negócio' },
-  { id: 3, name: 'Fotos & Vídeos' },
-  { id: 4, name: 'Anúncios Pagos' },
-  { id: 5, name: 'Sistemas & Painéis' },
-  { id: 6, name: 'Manutenção' },
+  { id: 2, name: 'Fotos & Vídeos' },
+  { id: 3, name: 'Anúncios Pagos' },
+  { id: 4, name: 'Sistemas & Painéis' },
+  { id: 5, name: 'Manutenção' },
+  { id: 6, name: 'Projeto Sob Medida' },
 ];
 
 export const differentials = [
@@ -32,6 +32,103 @@ export const differentials = [
   },
 ];
 
+export const servicesDetailed = [
+  {
+    id: 1,
+    title: 'Sites & Vitrines',
+    problem: 'Você tem um ótimo negócio, mas sua presença online não reflete a qualidade que você oferece.',
+    description: 'Criamos sites profissionais, rápidos e bonitos que apresentam seu negócio da melhor forma. Site responsivo, otimizado para aparecer nos resultados de busca, pronto para converter visitantes em clientes.',
+    includes: [
+      'Site responsivo (celular, tablet, desktop)',
+      'Design profissional com sua marca',
+      'Formulário de contato funcional',
+      'SEO básico configurado',
+      'Hospedagem 1 ano incluída',
+      'Estrutura pensada para confiança'
+    ],
+    benefit: 'Seu cliente te encontra online, vê que você é profissional e sente confiança em te contratar.',
+    icon: 'globe',
+  },
+  {
+    id: 2,
+    title: 'Fotos & Vídeos',
+    problem: 'Você tira as fotos com o celular e elas não vendem bem. Ou não tem conteúdo visual para postar nas redes.',
+    description: 'Produzimos fotos e vídeos profissionais do seu negócio, produtos e equipe. Conteúdo pronto para postar no Instagram, site, anúncios e redes sociais.',
+    includes: [
+      'Sessão de fotos no seu local de negócio',
+      'Edição profissional das imagens',
+      'Vídeos curtos para redes sociais',
+      'Entrega em alta resolução',
+      'Direitos de uso para suas campanhas'
+    ],
+    benefit: 'Seu Instagram fica profissional, seus produtos vendem mais e você economiza tempo criando conteúdo.',
+    icon: 'camera',
+  },
+  {
+    id: 3,
+    title: 'Anúncios Pagos (Google & Facebook)',
+    problem: 'Você investe em anúncios, mas gasta dinheiro sem saber se está funcionando.',
+    description: 'Criamos, testamos e otimizamos suas campanhas de anúncios no Google e Facebook. Você paga pelos resultados reais, não por cliques sem valor.',
+    includes: [
+      'Estratégia e planejamento de campanha',
+      'Criação de anúncios profissionais',
+      'Configuração e otimização contínua',
+      'Acompanhamento de resultados',
+      'Relatório mensal de performance',
+      'Você controla o orçamento'
+    ],
+    benefit: 'Seus anúncios atraem clientes de verdade, você sabe quanto gasta por cliente e pode decidir se continua ou não.',
+    icon: 'trending-up',
+  },
+  {
+    id: 4,
+    title: 'Sistemas & Painéis',
+    problem: 'Você faz tudo no WhatsApp, planilhas e anotações. Precisa profissionalizar, mas acha que é caro e complicado.',
+    description: 'Criamos sistemas personalizados para seu negócio: agendamentos online, painel administrativo, relatórios automáticos, integração com suas ferramentas.',
+    includes: [
+      'Sistema de agendamentos online',
+      'Painel administrativo para você gerenciar',
+      'Relatórios e análises automáticas',
+      'Integração com suas ferramentas',
+      'Treinamento de uso'
+    ],
+    benefit: 'Você trabalha menos com tarefas administrativas, seus clientes agendum online 24/7 e você tem dados reais do seu negócio.',
+    icon: 'sliders',
+  },
+  {
+    id: 5,
+    title: 'Manutenção & Suporte',
+    problem: 'Seu site ou sistema está funcionando, mas se quebrar você não sabe quem chama.',
+    description: 'Oferecemos planos de manutenção mensal. Nós cuidamos de atualizações, correções, melhorias e suporte técnico contínuo.',
+    includes: [
+      'Suporte técnico por WhatsApp',
+      'Atualizações de segurança',
+      'Pequenas alterações de conteúdo',
+      'Backups automáticos',
+      'Monitoramento de disponibilidade'
+    ],
+    benefit: 'Você tem tranquilidade, seu site/sistema sempre funciona e você não se preocupa com problemas técnicos.',
+    icon: 'wrench',
+  },
+  {
+    id: 6,
+    title: 'Projeto Sob Medida',
+    problem: 'Seu negócio é único e merece uma solução personalizada completa.',
+    description: 'Desenvolvemos soluções integrais customizadas: branding, site, sistema, conteúdo, fotos, vídeos e estratégia de marketing. Tudo pensado especificamente para você.',
+    includes: [
+      'Descoberta e planejamento estratégico',
+      'Identidade visual personalizada',
+      'Site/sistema customizado',
+      'Produção de conteúdo e fotos',
+      'Vídeos profissionais',
+      'Estratégia de marketing digital',
+      'Treinamento e documentação completa'
+    ],
+    benefit: 'Você tem uma solução única que reflete seu negócio e te diferencia da concorrência.',
+    icon: 'zap',
+  },
+];
+
 export const servicesCreate = [
   {
     id: 1,
@@ -42,10 +139,10 @@ export const servicesCreate = [
   },
   {
     id: 2,
-    title: 'Google Meu Negócio',
-    description: 'Otimizado, com fotos e avaliações. Seu cliente te acha no Maps.',
+    title: 'Fotos & Vídeos',
+    description: 'Conteúdo profissional pronto para suas redes, site e anúncios.',
     span: 1,
-    icon: 'map-pin',
+    icon: 'camera',
   },
   {
     id: 3,
@@ -56,20 +153,20 @@ export const servicesCreate = [
   },
   {
     id: 4,
-    title: 'Foto do Negócio',
-    description: 'Tiramos fotos profissionais do seu espaço, produtos, equipe. Pronto para postar.',
+    title: 'SEO Otimizado',
+    description: 'Seu site aparece nos resultados do Google. Clientes te encontram naturalmente.',
     span: 1,
-    icon: 'camera',
+    icon: 'search',
   },
 ];
 
 export const servicesMaintain = [
   {
     id: 1,
-    title: 'Conteúdo Mensal',
-    description: 'Posts, fotos, vídeos. Seu negócio ativo nas redes.',
+    title: 'Estratégia de Marketing',
+    description: 'Planejamento digital para crescer vendas e presença da marca.',
     span: 1,
-    icon: 'edit-3',
+    icon: 'target',
   },
   {
     id: 2,
