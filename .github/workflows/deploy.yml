@@ -1,11 +1,11 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,10 +23,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
+      - name: Move build to root (for GitHub Pages)
+        run: |
+          # Remove old build files except .git
+          find . -maxdepth 1 -type f -not -name '.*' -not -name 'package*' -not -name 'README*' -not -name 'astro*' -not -name 'tsconfig*' -not -name 'tailwind*' -delete
+          find . -maxdepth 1 -type d -not -name '.' -not -name '.git' -not -name 'node_modules' -not -name '.github' -not -name 'public' -not -name 'src' -delete
+          # Copy dist files to root
+          cp -r dist/* .
+
+      - name: Commit build
         run: |
           git config user.name "Deploy Bot"
           git config user.email "deploy@github.com"
-          git add dist -f
-          git commit --allow-empty -m "Deploy to gh-pages"
-          git push origin `git subtree split --prefix dist main`:gh-pages --force
+          git add . -f
+          git commit -m "build: compilar site" || true
+          git push
