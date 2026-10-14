@@ -35,17 +35,17 @@ export const differentials = [
 export const servicesCreate = [
   {
     id: 1,
-    title: 'Website',
-    description: 'Site responsivo, rápido e bonito. Com sua marca, seu jeito.',
+    title: 'Sites & Vitrines',
+    description: 'Site profissional, responsivo e otimizado. Converte visitantes em clientes.',
     span: 1,
     icon: 'globe',
   },
   {
     id: 2,
-    title: 'Google Meu Negócio',
-    description: 'Otimizado, com fotos e avaliações. Seu cliente te acha no Maps.',
+    title: 'Fotos & Vídeos',
+    description: 'Conteúdo profissional para suas redes, site e campanhas de marketing.',
     span: 1,
-    icon: 'map-pin',
+    icon: 'camera',
   },
   {
     id: 3,
@@ -56,10 +56,10 @@ export const servicesCreate = [
   },
   {
     id: 4,
-    title: 'Foto do Negócio',
-    description: 'Tiramos fotos profissionais do seu espaço, produtos, equipe. Pronto para postar.',
+    title: 'SEO Otimizado',
+    description: 'Seu site aparece nos resultados do Google. Clientes te encontram naturalmente.',
     span: 1,
-    icon: 'camera',
+    icon: 'search',
   },
 ];
 
